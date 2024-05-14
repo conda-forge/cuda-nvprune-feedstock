@@ -20,13 +20,14 @@ source:
   sha256: a322bb849e8974e759d1287977dd237d4ca240159e70fe3e131df600a7cf4d32  # [win]
 
 build:
-  number: 1
+  number: 2
   skip: true  # [osx]
 
 requirements:
   build:
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
+    - {{ stdlib("c") }}
   host:
     - cuda-version {{ cuda_version }}
   run:
