@@ -1,6 +1,6 @@
 {% set name = "cuda-nvprune" %}
-{% set version = "12.5.82" %}
-{% set cuda_version = "12.5" %}
+{% set version = "12.6.20" %}
+{% set cuda_version = "12.6" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-ppc64le" %}  # [ppc64le]
 {% set platform = "linux-sbsa" %}  # [aarch64]
@@ -14,9 +14,9 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvprune/{{ platform }}/cuda_nvprune-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: afced555949fb3be875d467fcbf6903166917aa5ad42672f1ceca0a972d6b49f  # [linux64]
-  sha256: ab2fa66bce3553b6a497575d476c81105d8d8c3f2b3646eb52a6edb624cc2b14  # [aarch64]
-  sha256: d3de38ab97d772e7a002fdedbf0fc3cb701c18a3602e54d05282337bc70b7707  # [win]
+  sha256: 8ad2a26164cfaea08038363ebe9628503abba5440a708800f013771d1eec0f03  # [linux64]
+  sha256: 9de86514d4262bd8af499631fac3f40d8a1f002983342990d511219224b6e498  # [aarch64]
+  sha256: 9a5abccbbd8132417a86f2419f52a93ca48272a9d89336f060225bf955f7ee2c  # [win]
 
 build:
   number: 0
