@@ -12,6 +12,15 @@ for i in `ls`; do
     [[ $i == "conda_build.sh" ]] && continue
     [[ $i == "metadata_conda_debug.yaml" ]] && continue
 
+    if [[ $i == "bin" ]]; then
+        for j in `ls "${i}"`; do
+	    [[ -f "bin/${j}" ]] || continue
+
+            echo patchelf --force-rpath --set-rpath "\$ORIGIN/../lib:\$ORIGIN/../${targetsDir}/lib" "${i}/${j}" ...
+            patchelf --force-rpath --set-rpath "\$ORIGIN/../lib:\$ORIGIN/../${targetsDir}/lib" "${i}/${j}"
+        done
+    fi
+
     # bin installed in PREFIX
     cp -rv $i ${PREFIX}
 done
