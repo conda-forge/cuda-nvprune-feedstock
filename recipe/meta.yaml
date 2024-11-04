@@ -19,7 +19,8 @@ source:
   sha256: b586c315e32731794f8bc7b3cbccbeb7f535d361f0191b456f730c70ad74612e  # [win]
 
 build:
-  number: 0
+  number: 1
+  binary_relocation: false
   skip: true  # [osx or ppc64le]
 
 requirements:
@@ -33,9 +34,14 @@ requirements:
     - {{ pin_compatible("cuda-version", max_pin="x.x") }}
 
 test:
+  requires:
+    - patchelf                                                # [linux]
+  files:
+    - test-rpath.sh                                           # [linux]
   commands:
     - test -f $PREFIX/bin/nvprune  # [unix]
     - if not exist %LIBRARY_BIN%\\nvprune.exe exit 1  # [win]
+    - bash test-rpath.sh                                      # [linux]
 
 about:
   home: https://developer.nvidia.com/cuda-toolkit
