@@ -19,7 +19,7 @@ source:
   sha256: 90f9f7137a94e41eb5dd005f05298e556f644afa10ba2e59d6421b18af9c116d  # [win]
 
 build:
-  number: 0
+  number: 1
   binary_relocation: false
   skip: true  # [osx or ppc64le]
 
@@ -28,6 +28,7 @@ requirements:
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ stdlib("c") }}
+    - cf-nvidia-tools 1  # [linux]
   host:
     - cuda-version {{ cuda_version }}
   run:
