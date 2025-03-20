@@ -24,3 +24,5 @@ for i in `ls`; do
     # bin installed in PREFIX
     cp -rv $i ${PREFIX}
 done
+
+check-glibc "$PREFIX"/lib*/*.so.* "$PREFIX"/bin/* "$PREFIX"/targets/*/lib*/*.so.* "$PREFIX"/targets/*/bin/*
