@@ -3,8 +3,11 @@
 {% set cuda_version = "12.9" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-ppc64le" %}  # [ppc64le]
-{% set platform = "linux-sbsa" %}  # [aarch64]
 {% set platform = "windows-x86_64" %}  # [win]
+{% set platform = "linux-sbsa" %}  # [aarch64 and arm_variant_type=="sbsa"]
+{% set platform = "linux-aarch64" %}  # [aarch64 and arm_variant_type=="tegra"]
+{% set target_name = "sbsa-linux" %}  # [aarch64 and arm_variant_type=="sbsa"]
+{% set target_name = "aarch64-linux" %}  # [aarch64 and arm_variant_type=="tegra"]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
 
@@ -15,11 +18,12 @@ package:
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvprune/{{ platform }}/cuda_nvprune-{{ platform }}-{{ version }}-archive.{{ extension }}
   sha256: a06f0e2959a4dd3dbb62a984dbe77b813397022596f5c62d74ddd83b238571f2  # [linux64]
-  sha256: 15e1d6527bf04c162950251940b10b8b8254f68028e2ffc0bfb7ed84bb2e1382  # [aarch64]
+  sha256: 15e1d6527bf04c162950251940b10b8b8254f68028e2ffc0bfb7ed84bb2e1382  # [aarch64 and arm_variant_type=="sbsa"]
+  sha256: 69fa4cf2cede678825e0c8032ccd629e17de1b9d8667b05b6702d873fd2fb926  # [aarch64 and arm_variant_type=="tegra"]
   sha256: be23018507f015ca948c503a43a3c48449c0dc1ceaab1e721caf01f024727312  # [win]
 
 build:
-  number: 0
+  number: 1
   binary_relocation: false
   skip: true  # [osx or ppc64le]
 
@@ -33,6 +37,7 @@ requirements:
     - cuda-version {{ cuda_version }}
   run:
     - {{ pin_compatible("cuda-version", max_pin="x.x") }}
+    - arm-variant * {{ arm_variant_type }} # [aarch64]
 
 test:
   requires:
