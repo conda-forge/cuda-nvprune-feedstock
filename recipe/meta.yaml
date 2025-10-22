@@ -37,7 +37,7 @@ requirements:
     - cuda-version {{ cuda_version }}
   run:
     - {{ pin_compatible("cuda-version", max_pin="x.x") }}
-    - arm-variant * {{ arm_variant_type }} # [aarch64]
+    - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
 test:
   requires:
