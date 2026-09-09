@@ -8,6 +8,10 @@
 {% set platform = "windows-arm64" %}  # [win and arm64]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
+{% set sha256 = "83c404dcdd859bb51f41da419ef4b0cacec3b2d0d534d27bf25c8cb78dba8617" %}  # [linux64]
+{% set sha256 = "f604e755328a1eeee90579ea364058d46edace6ba5685e5159fefce404ca614a" %}  # [aarch64]
+{% set sha256 = "046ee2cacaba2de6395f3d18e8bc98d3ef5ba277226dc65617b14355e21d49d6" %}  # [win64]
+{% set sha256 = "3fbf17a8f8add7d02c4c5704da7155e0fe72424d42dbc3d088457dd3b1b8f87d" %}  # [win and arm64]
 
 package:
   name: {{ name|lower }}
@@ -15,10 +19,7 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvprune/{{ platform }}/cuda_nvprune-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: 83c404dcdd859bb51f41da419ef4b0cacec3b2d0d534d27bf25c8cb78dba8617  # [linux64]
-  sha256: f604e755328a1eeee90579ea364058d46edace6ba5685e5159fefce404ca614a  # [aarch64]
-  sha256: 046ee2cacaba2de6395f3d18e8bc98d3ef5ba277226dc65617b14355e21d49d6  # [win64]
-  sha256: 3fbf17a8f8add7d02c4c5704da7155e0fe72424d42dbc3d088457dd3b1b8f87d  # [win and arm64]
+  sha256: {{ sha256 }}
 
 build:
   number: 0
