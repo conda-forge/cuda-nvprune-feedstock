@@ -1,12 +1,17 @@
 {% set name = "cuda-nvprune" %}
-{% set version = "13.3.29" %}
-{% set cuda_version = "13.3" %}
+{% set version = "13.4.49" %}
+{% set cuda_version = "13.4" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-ppc64le" %}  # [ppc64le]
 {% set platform = "linux-sbsa" %}  # [aarch64]
-{% set platform = "windows-x86_64" %}  # [win]
+{% set platform = "windows-x86_64" %}  # [win64]
+{% set platform = "windows-arm64" %}  # [win and arm64]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
+{% set sha256 = "83c404dcdd859bb51f41da419ef4b0cacec3b2d0d534d27bf25c8cb78dba8617" %}  # [linux64]
+{% set sha256 = "f604e755328a1eeee90579ea364058d46edace6ba5685e5159fefce404ca614a" %}  # [aarch64]
+{% set sha256 = "046ee2cacaba2de6395f3d18e8bc98d3ef5ba277226dc65617b14355e21d49d6" %}  # [win64]
+{% set sha256 = "3fbf17a8f8add7d02c4c5704da7155e0fe72424d42dbc3d088457dd3b1b8f87d" %}  # [win and arm64]
 
 package:
   name: {{ name|lower }}
@@ -14,9 +19,7 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvprune/{{ platform }}/cuda_nvprune-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: b6332053b5101260f08e048664414e09fbb4910238c0087a65d532b95ae9b35d  # [linux64]
-  sha256: bc530696300a966a04752d555f260178ac333c844a77ceff8f43103fe1cfa198  # [aarch64]
-  sha256: e3aed34d1368382172eb9b811000f71f5a6a00c0e0cfb96f9fc709dc1c3761ab  # [win]
+  sha256: {{ sha256 }}
 
 build:
   number: 0
